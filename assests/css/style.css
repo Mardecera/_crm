@@ -1,0 +1,297 @@
+:root{
+    --background: hsl(0, 0%, 90%);
+    --background-sub: hsl(0, 0%, 100%);
+    --shadow: hsla(0, 0%, 67%, 0.4);
+    --color-nav: hsl(186, 36%, 58%);
+    --btn-edit: hsl(140, 61%, 44%);
+    --btn-delete: hsl(342, 72%, 48%);
+
+    --color-green: hsl(145, 91%, 87%);
+    --color-green-border: hsl(145, 70%, 67%);
+    --color-red: hsla(342, 100%, 78%, 0.452);
+    --color-red-border: hsl(342, 72%, 48%);
+    --color-blue: hsl(216, 53%, 43%);
+
+    --color-submit: hsl(330, 78%, 55%);
+    --color-submit-hover: hsl(330, 78%, 50%);
+}
+
+*, :after, :before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container */
+html{
+    background-color: hsl(0, 0%, 90%);
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    padding: 2.5em;
+}
+
+.contain{
+    background-color: var(--background-sub);
+    width: 100%;
+    height: 100%;
+    border-radius: .5em;
+    overflow: hidden;
+    box-shadow: 10px 10px 30px var(--shadow);
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+}
+
+/* Navigator Part */
+.nav{
+    height: 100%;
+    background-color:var(--color-nav);
+    padding: 2em;
+}
+
+.nav .something-text{
+    color: white;
+    padding-bottom: 1em;
+    border-bottom: 1px solid white;
+}
+
+.nav-buttons div > a{
+    display: block;
+    color: rgba(255, 255, 255, 0.658);
+    width: 100%;
+    padding: 0em .5em;
+    border-radius: .5em;
+    text-decoration: none;
+}
+
+.nav-buttons .active > a{
+    background-color: rgba(255, 255, 255, 0.171);
+    color: white;
+}
+
+.nav-buttons>div:not(.active)>a:hover{
+    background-color: rgba(255, 255, 255, 0.171);
+    color: white;
+}
+
+.nav-buttons>div:first-child{
+    margin-top: 2em;
+}
+
+.nav-buttons>div{
+    margin-top: .5em;
+}
+
+.a-content{
+    display: flex;
+    align-items: center;
+}
+
+.icon img{
+    width: 1.5em;
+}
+
+.icon{
+    display: inline-block;
+    margin: .5em;
+}
+
+.icon-label{
+    display: inline-block;
+}
+
+/* Data part */
+.content{
+    width: 100%;
+    height: 100%;
+    padding: 2em;
+    background-color: rgb(240, 240, 240);
+    margin: auto;
+}
+
+.shadow{
+    background-color: var(--background-sub);
+    box-shadow: 4px 4px 10px var(--shadow);
+    padding: 1em;
+    border-radius: .5em;
+    overflow: hidden;
+}
+
+.content table{
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: .5em;
+    overflow: hidden;
+}
+
+.table-container{
+    width: 100%;
+    padding: 1em;
+    background-color: white;
+}
+
+.content table tbody tr{
+    border-top: 1px solid rgb(224, 224, 224);
+}
+
+.content table tr:nth-child(even) {
+    background-color: #ececec;
+}
+
+.content table thead{
+    background-color: #444444;
+    color: white;
+}
+
+.content table thead{
+    height: 3em;
+}
+
+.content table th:not(:last-child), .content table td:not(:last-child){
+    border-right: 1px solid rgb(228, 228, 228);
+}
+
+.content table thead th, .content table tbody td{
+    padding: .5em 2em;
+}
+
+.btn {
+    padding: .5em .7em;
+    color: white;
+    border: none;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+.td-btn{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-edit{
+    background-color: var(--btn-edit)
+}
+
+.btn-delete{
+    background-color: var(--btn-delete)
+}
+
+/* PAGE: New Client */
+
+.content {
+    text-align: center
+}
+
+.form:parent{
+    border: 1px solid red;
+}
+
+.form{
+    display: inline-block;
+    padding: 0;
+    background-color: white;
+}
+
+.form{
+    width: 25rem;
+}
+
+.form form>div:not(:first-child){
+    padding: 0em 2em;
+}
+
+.form > form > div:not(:last-child), .buttons, .msn{
+    margin-bottom: 2em;
+}
+
+.form-title{
+    text-align: center;
+    font-weight: bold;
+    padding: 2em 0em;
+    background-color: var(--color-nav);
+    color: white
+}
+
+.form-fields>div{
+    position: relative;
+}
+
+.form-fields>div:not(:last-child){
+    margin-bottom: 1.5em;
+}
+
+/* Input animation */
+.form-fields>div>input{
+    width: 100%;
+    padding: 1em;
+    background: none;
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.226);
+    border-radius: .3em;
+}
+
+.form-fields>div>.label-form{
+    position: absolute;
+    left: 1em;
+    top: 1em;
+    color: rgba(0, 0, 0, 0.445);
+    pointer-events: none;
+    transition: top .2s;
+}
+
+.input-form:focus + .label-form,
+.input-form:valid + .label-form{
+    background-color: white;
+    top: -.6rem;
+    font-size: .8rem;
+    padding: 0em .5em;
+    z-index: 2;
+}
+
+.input-form:focus + .label-form{
+    color: var(--color-nav);
+    font-weight: bold;
+}
+
+.input-form:focus{
+    border: 2px solid var(--color-nav);
+}
+
+button[type=submit]{
+    background-color: var(--color-submit);
+    padding: 1em 0em;
+    width: 100%;
+    border: none;
+    color: white;
+    border-radius: .3em;
+    cursor: pointer;
+}
+
+button[type=submit]:hover{
+    background-color: var(--color-submit-hover);
+}
+
+.success-msn, .error-msn{
+    padding: 1em 0em;
+    border-radius: .3em;
+    width: 100%;
+}
+
+.success-msn{
+    background-color: var(--color-green);
+    border: 1px solid var(--color-green-border);
+    color: var(--color-nav);
+}
+
+.error-msn{
+    background-color: var(--color-red);
+    border: 1px solid var(--color-red-border);
+    color: var(--color-red-border);
+}
+
+.fas{
+    pointer-events: none;
+}

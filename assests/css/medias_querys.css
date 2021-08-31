@@ -1,0 +1,18 @@
+@media (max-width:1300px) {
+    .container{
+        padding: 0;
+    }
+
+    .contain{
+        grid-template-columns: 1fr 12fr;
+        border-radius: 0;
+    }
+
+    .nav{
+        padding: 1em;
+    }
+
+    .icon-label{
+        display: none;
+    }
+}

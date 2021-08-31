@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel='stylesheet' href='./assests/css/style.css'>
+    <title>CRM</title>
+</head>
+<body>
+    <div class="container">
+        <div class="contain">
+            <div class="nav">
+                <div class="something-text">
+                    CRM - IndexedDB
+                </div>
+                <div class="nav-buttons">
+                    <div class="clients active">
+                        <a href="#">
+                            <div class="a-content">
+                                <div class="icon">
+                                    <i class="fas fa-mug-hot"></i>
+                                </div>
+                                <div class="icon-label">Clients</div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="new-client">
+                        <a href="./assests/pages/add_client.html">
+                            <div class="a-content">
+                                <div class="icon">
+                                    <i class="fas fa-sliders-h"></i>
+                                </div>
+                                <div class="icon-label">New Client</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <!-- Table of clients -->
+                <div class='table-container shadow'>
+                    <table id="table-clients">
+                        <thead>
+                            <tr>
+                                <th>Names</th>
+                                <th>E-mail</th>
+                                <th>Phone</th>
+                                <th>Company</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='./assests/js/app.js' type='module'></script>
+</html>
