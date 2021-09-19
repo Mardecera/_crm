@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel='stylesheet' href='../src/style/general.css'>
+    <title>CRM</title>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-nav">
+            <div class="nav-logo">
+                CRM - IndexedDB
+            </div>
+            <div class="nav-buttons">
+                <div class="tab nav-logo">
+                    CRM - IndexedDB
+                </div>
+                <div class="tab all-clients active" disabled="true">
+                    <a href="#">
+                        <i class="fas fa-mug-hot"></i><span>Clients</span>
+                    </a>
+                </div>
+                <div class="tab new-client">
+                    <a href="./pages/add_client.html">
+                        <i class="fas fa-sliders-h"></i><span>New Client</span>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-burger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+        <script>
+            const $ = element => document.querySelector(element)
+            const burgerButton = $('.nav-burger')
+            burgerButton.onclick = () => {
+                const navButtons = $('.nav-buttons')
+                if (navButtons.style.display == 'none'){
+                    navButtons.style.display = 'block'
+                } else{
+                    navButtons.style.display = 'none'
+                }
+            }
+        </script>
+        <div class="dashboard-body">
+            <div class='table-container shadow'>
+                <div class="list-void">
+                    <div class="list-picture">
+                        <img 
+                            src="./images/list_clients_void.svg"
+                            loading="lazy"
+                            decoding="async"
+                            alt="...">
+                    </div>
+                    <div class="list-message">
+                        No tienes ningun cliente agregado, agrega alguno.
+                    </div>
+                    <div class="list-add">
+                        <a href="./pages/add_client.html">+</a>
+                    </div>
+                </div>
+                <table id="table-clients" class="hidden">
+                    <thead>
+                        <tr>
+                            <th>Names</th>
+                            <th>E-mail</th>
+                            <th>Phone</th>
+                            <th>Company</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src='../src/script/app.js' type='module'></script>
+</html>

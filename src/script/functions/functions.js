@@ -14,3 +14,14 @@ export function fill_fields() {
     get_element('#phone').value = `9${number_random}71${number_random}64${number_random}4`
     get_element('#company').value = 'Atlanta'
 }
+
+export function getHTML({ type = 'div', classes = [], text_content = '', href = '', attributes = []}) {
+    const element = document.createElement(type)
+
+    classes.forEach(clas => element.classList.add(clas) )
+    attributes.forEach(attribute => { element.setAttribute(attribute[0], attribute[1])})
+    element.textContent = text_content
+    if (!!href) { element.href = href }
+
+    return element
+}
