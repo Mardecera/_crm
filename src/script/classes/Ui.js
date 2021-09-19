@@ -18,7 +18,7 @@ export class UI {
         this.changeEmptyList()
 
         clients.forEach(client => {
-            const href = `pages/edit_client.html?id=${client.id}`
+            const href = `public/pages/edit_client.html?id=${client.id}`
             const clientHTML        = FUNC.getHTML({type: 'tr'})
             const clientHTMLName    = FUNC.getHTML({type: 'td', text_content: client.name})
             const clientHTMLEmail   = FUNC.getHTML({type: 'td', text_content: client.email})

@@ -49,7 +49,7 @@ export class Manager extends UI{
                 this.totalClients++
                 this.showMessage('success', MESSAGE_SUCCESS)
             }
-            setTimeout(() => window.location = '../index.html', 1500)
+            setTimeout(() => window.location = '../../index.html', 1500)
         }
     }
 
