@@ -1,10 +1,11 @@
-import { UI } from "./Ui.js"
+import { UI } from './Ui.js'
 
-const INDEXEDDB_MESSAGE_ALERT = 'Your browser does not have IndexedDB for this application to work, update your browser.'
+const INDEXEDDB_MESSAGE_ALERT =
+    'Your browser does not have IndexedDB for this application to work, update your browser.'
 const MESSAGE_SUCCESS = 'Cliente creado correctamente'
 const MESSAGE_SUCCESS_EDIT = 'Cliente editado correctamente'
 
-export class Manager extends UI{
+export class Manager extends UI {
     constructor() {
         super()
         this.init_DB()
@@ -19,17 +20,20 @@ export class Manager extends UI{
                 const db = evt.target.result
                 const object_store = db.createObjectStore('client', {
                     keyPath: 'id',
-                    autoIncrement: true
+                    autoIncrement: true,
                 })
 
                 object_store.createIndex('name', 'name', { unique: false })
                 object_store.createIndex('email', 'email', { unique: true })
                 object_store.createIndex('phone', 'phone', { unique: true })
-                object_store.createIndex('company', 'company', { unique: false })
+                object_store.createIndex('company', 'company', {
+                    unique: false,
+                })
                 object_store.createIndex('id', 'id', { unique: true })
             }
-
-        } else { alert(INDEXEDDB_MESSAGE_ALERT) }
+        } else {
+            alert(INDEXEDDB_MESSAGE_ALERT)
+        }
     }
 
     addClient(client, id = '') {
@@ -39,7 +43,7 @@ export class Manager extends UI{
             const DB = request.result
             const transaction = DB.transaction('client', 'readwrite')
             const objectStore = transaction.objectStore('client')
-            
+
             if (!!id) {
                 client.id = id
                 objectStore.put(client)
@@ -49,7 +53,7 @@ export class Manager extends UI{
                 this.totalClients++
                 this.showMessage('success', MESSAGE_SUCCESS)
             }
-            setTimeout(() => window.location = '../../index.html', 1500)
+            setTimeout(() => (window.location = '../index.html'), 1500)
         }
     }
 
@@ -71,7 +75,7 @@ export class Manager extends UI{
         }
     }
 
-    getClient( id ) {
+    getClient(id) {
         const request = window.indexedDB.open('CRM', 1)
 
         request.onsuccess = () => {
@@ -79,14 +83,14 @@ export class Manager extends UI{
             const transaction = DB.transaction('client', 'readonly')
             const objectStore = transaction.objectStore('client')
 
-            objectStore.get( id ).onsuccess = (event) => {
+            objectStore.get(id).onsuccess = (event) => {
                 const client = event.target.result
-                this.fillForm( client )
+                this.fillForm(client)
             }
         }
     }
 
-    deleteClient( id ) {
+    deleteClient(id) {
         const request = window.indexedDB.open('CRM', 1)
 
         request.onsuccess = () => {
