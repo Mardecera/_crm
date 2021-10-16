@@ -16,46 +16,26 @@ export class UI {
 
     showClients(clients) {
         this.changeEmptyList()
+        const fragment = document.createDocumentFragment()
+        const template = document.querySelector('#template__clients').content
+        const $template = (query) => template.querySelector(query)
 
-        clients.forEach((client) => {
-            const href = `./pages/edit_client.html?id=${client.id}`
-            const clientHTML = FUNC.getHTML({ type: 'tr' })
-            const clientHTMLName = FUNC.getHTML({
-                type: 'td',
-                text_content: client.name,
-            })
-            const clientHTMLEmail = FUNC.getHTML({
-                type: 'td',
-                text_content: client.email,
-            })
-            const clientHTMLPhone = FUNC.getHTML({
-                type: 'td',
-                text_content: client.phone,
-            })
-            const clientHTMLCompany = FUNC.getHTML({
-                type: 'td',
-                text_content: client.company,
-            })
-            const clientHTMLActions = FUNC.getHTML({
-                type: 'td',
-                classes: ['td-btn'],
-            })
-            const clientHTMLEdit = this.getRowButtonEdit(href)
-            const clientHTMLDelete = this.getRowButtonDelete(
-                clientHTML,
-                client.id
-            )
+        clients.forEach(({ company, email, id, name, phone }) => {
+            const href = `./pages/edit_client.html?id=${id}`
 
-            clientHTML.appendChild(clientHTMLName)
-            clientHTML.appendChild(clientHTMLEmail)
-            clientHTML.appendChild(clientHTMLPhone)
-            clientHTML.appendChild(clientHTMLCompany)
-            clientHTML.appendChild(clientHTMLActions)
-            clientHTMLActions.appendChild(clientHTMLEdit)
-            clientHTMLActions.appendChild(clientHTMLDelete)
+            $template('.client__names').textContent = name
+            $template('.client__email').textContent = email
+            $template('.client__phone__number').textContent = phone
+            $template('.client__company__name').textContent = company
+            $template('.btn-edit').href = href
 
-            DOM.tableClients.appendChild(clientHTML)
+            const clone = template.cloneNode(true)
+            clone.querySelector('.btn-delete').onclick = (event) =>
+                this.getConfirmation(event.target.parentNode.parentNode, id)
+            fragment.appendChild(clone)
         })
+
+        DOM.tableClients.appendChild(fragment)
     }
 
     fillForm({ name, email, phone, company, id }) {
@@ -65,75 +45,24 @@ export class UI {
         DOM.input_company.value = company
     }
 
-    getRowButtonDelete(clientHTML, id) {
-        const buttonDelete = FUNC.getHTML({ classes: ['btn', 'btn-delete'] })
-        const icon = FUNC.getHTML({
-            type: 'i',
-            classes: ['fas', 'fa-trash-alt'],
-        })
-
-        buttonDelete.appendChild(icon)
-        buttonDelete.onclick = () => this.getConfirmation(clientHTML, id)
-        return buttonDelete
-    }
-
-    getRowButtonEdit(href) {
-        const buttonEdit = FUNC.getHTML({
-            type: 'a',
-            classes: ['btn', 'btn-edit'],
-            href: href,
-        })
-        const icon = FUNC.getHTML({ type: 'i', classes: ['fas', 'fa-pen'] })
-
-        buttonEdit.appendChild(icon)
-        return buttonEdit
-    }
-
     getConfirmation(clientHTML, id) {
-        const confirmationBG = FUNC.getHTML({ classes: ['confirmation-bg'] })
-        const confirmationCard = FUNC.getHTML({ classes: ['confirmation'] })
-        const confirmationBody = FUNC.getHTML({
-            classes: ['confirmation-body'],
-            text_content: CONFIRMATION_MESSAGE,
-        })
-        const confirmationButtons = this.getConfirmationButtons(
-            clientHTML,
-            confirmationBG,
-            id
-        )
+        const template = document.querySelector(
+            '#template__confirmation'
+        ).content
+        const clone = template.cloneNode(true)
+        const cloneBody = clone.querySelector('.confirmation-body')
+        const cloneButtonAccept = clone.querySelector('.btn-accept')
+        const cloneButtonCancel = clone.querySelector('.btn-cancel')
 
-        confirmationBG.appendChild(confirmationCard)
-        confirmationCard.appendChild(confirmationBody)
-        confirmationCard.appendChild(confirmationButtons)
-
-        DOM.container.appendChild(confirmationBG)
-    }
-
-    getConfirmationButtons(clientHTML, confirmationBG, id) {
-        const divButtons = FUNC.getHTML({
-            classes: ['confirmation-buttons'],
-        })
-        const acceptButton = FUNC.getHTML({
-            type: 'button',
-            classes: ['btn-accept'],
-            text_content: 'Accept',
-        })
-        const cancelButton = FUNC.getHTML({
-            type: 'button',
-            classes: ['btn-cancel'],
-            text_content: 'Cancel',
-        })
-
-        acceptButton.onclick = (_) => {
+        cloneBody.textContent = CONFIRMATION_MESSAGE
+        cloneButtonAccept.onclick = (event) => {
             clientHTML.remove()
-            confirmationBG.remove()
+            event.target.parentNode.parentNode.parentNode.remove()
             this.deleteClient(id)
         }
-        cancelButton.onclick = (_) => confirmationBG.remove()
-        divButtons.appendChild(acceptButton)
-        divButtons.appendChild(cancelButton)
-
-        return divButtons
+        cloneButtonCancel.onclick = (event) =>
+            event.target.parentNode.parentNode.parentNode.remove()
+        DOM.container.appendChild(clone)
     }
 
     changeEmptyList() {
