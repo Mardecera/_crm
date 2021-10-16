@@ -1,4 +1,4 @@
-const $ = element => document.querySelector(element)
+const $ = (element) => document.querySelector(element)
 
 const form = $('#add-client')
 const input_name = $('#name')
@@ -19,5 +19,5 @@ export {
     table,
     tableClients,
     emptyList,
-    container
+    container,
 }

@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="../style/general.css">
     <title>CRM</title>
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../style/general.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <script src="../script/app.js" type='module' defer></script>
 </head>
 <body>
     <div class="container">
@@ -38,12 +39,7 @@
             const $ = element => document.querySelector(element)
             const burgerButton = $('.nav-burger')
             burgerButton.onclick = () => {
-                const navButtons = $('.nav-buttons')
-                if (navButtons.style.display == 'none'){
-                    navButtons.style.display = 'block'
-                } else{
-                    navButtons.style.display = 'none'
-                }
+                $('.nav-buttons').classList.toggle('hidden')
             }
         </script>
         <div class="dashboard-body">
@@ -77,5 +73,4 @@
         </div>
     </div>
 </body>
-<script src="../script/app.js" type='module'></script>
 </html>
